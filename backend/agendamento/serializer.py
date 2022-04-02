@@ -1,3 +1,4 @@
+from asyncore import read, write
 from rest_framework import serializers
 from agendamento.models import Agenda, Especialidade, Horario, Medico
 import time
@@ -7,9 +8,7 @@ class EspecialidadeSerializer(serializers.ModelSerializer):
         model = Especialidade
         fields = ('id', 'nome')
 
-
 class MedicoSerializer(serializers.ModelSerializer):
-    especialidade = EspecialidadeSerializer(many=True)
     class Meta:
         model = Medico
         fields = (

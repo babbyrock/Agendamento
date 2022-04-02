@@ -39,7 +39,7 @@ class HorarioViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.Ge
     serializer_class = HorarioSerializer
 
 
-class AgendaViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class CreateAgendaViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     permission_classes = (
         EhSuperUser,
         permissions.DjangoModelPermissions,

@@ -12,7 +12,7 @@ class Medico(models.Model):
     crm = models.CharField(unique=True,max_length=6)
     email = models.EmailField()
     telefone = models.CharField(max_length=30)
-    especialidade = models.ManyToManyField(Especialidade)
+    especialidade = models.ForeignKey(Especialidade, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.nome
