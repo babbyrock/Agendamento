@@ -1,0 +1,4 @@
+<button [ngClass]="checkButtonStyle()" type="{{type}}">
+  <img *ngIf="imageButton()" [src]="imageValue" alt="img" />
+  <span>{{ value }}</span>
+</button>

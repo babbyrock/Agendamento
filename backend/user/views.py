@@ -1,7 +1,11 @@
+from urllib import response
 from user.permissions import EhSuperUser
 from user.serializer import UsuarioSerializer
 from .models import Usuario
 from rest_framework import viewsets, generics
+from django.contrib.auth import authenticate
+from rest_framework import response, status
+
 
 
 class UsuariosViewSet(viewsets.ModelViewSet):
@@ -14,4 +18,19 @@ class ListaUsuarios(generics.ListAPIView):
         queryset = Usuario.objects.all()
         return queryset
     serializer_class = UsuarioSerializer
+
+# class LoginAPIView(generics.GenericAPIView):
+#     serializer_class = LoginSerializer
+    
+#     def post(self, request):
+#         email = request.data.get('email', None)
+#         password = request.data.get('password', None)
+
+#         user = authenticate(username=email, password=password)
+
+#         if user:
+#             serializer=self.serializer_class(user)
+            
+#             return response.Response(serializer.data, status=status.HTTP_200_OK)
+#         return response.Response({'message': "Credenciais inválidas, tente de novo"}, status=status.HTTP_400_BAD_REQUEST)
 

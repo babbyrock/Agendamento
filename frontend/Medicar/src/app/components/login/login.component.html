@@ -1,0 +1,55 @@
+<div class="login-container">
+  <div class="login-content">
+    <img src="../../../assets/logo.png">
+
+    <form #loginForm="ngForm" class="form-signin" (ngSubmit)="login()">
+      <div class="form-group label-float">
+        <input
+          [(ngModel)]="model.email"
+          name="email"
+          type="email"
+          id="email"
+          placeholder=" "
+          >
+          <label>E-mail</label>
+          <!-- <div class="m-0 invalid-feedback">
+            Nome é obrigatório.
+        </div> -->
+      </div>
+      <div class="login-input-container form-group label-float">
+        <input
+          [(ngModel)]="model.password"
+          name="password"
+          type="password"
+          placeholder=" "
+          id="password"
+          [type]="isConfirmPasswordVisible ? 'text' : 'password'"
+          >
+          <label>Senha</label>
+          <!-- <div class="m-0 invalid-feedback">
+            Nome é obrigatório.
+        </div> -->
+
+        <img class="input-password-img m-0"
+          *ngIf="!isConfirmPasswordVisible"
+          (click)="handleIsConfirmPasswordVisible()"
+          src="../../../assets/hidden-password.svg"
+        />
+        <img class="input-password-img m-0"
+          *ngIf="isConfirmPasswordVisible"
+          (click)="handleIsConfirmPasswordVisible()"
+          src="../../../assets/show-password.svg"
+        />
+      </div>
+      <div class="cadastro-buttons d-flex justify-content-between" style="margin-top: 20px;">
+        <app-buttons class="d-flex" theme="white" value="Criar Conta"(click)="redirectCreateAccount()">
+        </app-buttons>
+        <app-buttons class="d-flex" theme="blue" value="Acessar" type="submit">
+        </app-buttons>
+        <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button> -->
+      </div>
+    </form>
+
+
+  </div>
+</div>

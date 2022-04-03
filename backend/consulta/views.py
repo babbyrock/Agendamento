@@ -9,15 +9,14 @@ from user.permissions import EhSuperUser
 from django.http import QueryDict
 from rest_framework.viewsets import ModelViewSet
 
-class ConsultaViewSet(ModelViewSet
-   ):
-    # permission_classes = (IsAuthenticated, )
+class ConsultaViewSet(ModelViewSet):
+    permission_classes = (IsAuthenticated, )
     queryset = Consulta.objects.all()
     serializer_class = ConsultaSerializer
 
-    def list_consultas(self,request, format=None ):
-        # v =self.kwargs.get('horario', )
-        # query = request.GET.get('horario')
-        print(self.kwargs)
-        return Response(self.serializer_class(self.queryset, many=True).data,
-                        status=status.HTTP_200_OK)
+    # def list(self,request):
+    #     # v =self.kwargs.get('horario', )
+    #     # query = request.GET.get('horario')
+    #     print(self)
+    #     return Response(self.serializer_class(self.queryset, many=True).data,
+    #                     status=status.HTTP_200_OK)

@@ -49,3 +49,12 @@ class UsuarioSerializer(serializers.ModelSerializer):
         conta.set_password(password)
         conta.save()
         return conta
+
+
+# class LoginSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Usuario
+#         fields = ('username','email', 'token')
+#         # extra_kwargs = {'password': {'write_only': True}}
+
+#         read_only_fields = ['token']

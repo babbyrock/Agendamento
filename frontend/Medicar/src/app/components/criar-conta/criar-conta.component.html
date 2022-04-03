@@ -1,0 +1,87 @@
+<div class="cadastro-container">
+  <div class="cadastro-content">
+    <img src="../../../assets/logo.png">
+    <h4>Crie sua conta</h4>
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <div class="form-group">
+        <input
+          formControlName="username"
+          [ngClass]="{'is-invalid':f.username.errors && f.username.touched}"
+          placeholder="Nome">
+          <div class="m-0 invalid-feedback">
+            Nome é obrigatório.
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+        formControlName="email"
+        [ngClass]="{'is-invalid':f.email.errors && f.email.touched}"
+        placeholder="E-mail">
+        <div *ngIf="f.email.errors?.required && f.email.touched" class="m-0 invalid-feedback">
+          E-mail é obrigatório.
+        </div>
+        <div *ngIf="f.email.errors?.email && f.email.touched" class="m-0 invalid-feedback">
+          Deve ser um e-mail válido.
+        </div>
+      </div>
+
+
+      <div class="cadastro-input-container form-group">
+        <input
+          formControlName="password"
+          [ngClass]="{'is-invalid':f.password.errors && f.password.touched}"
+          placeholder="Senha" [type]="isPasswordVisible ? 'text' : 'password'">
+          <div *ngIf="f.password.errors?.required && f.password.touched" class="m-0 invalid-feedback">
+            Senha é obrigatório.
+          </div>
+          <div *ngIf="f.password.errors?.minlength && f.password.touched" class="m-0 invalid-feedback">
+            Deve conter no mínimo 6 caracteres.
+          </div>
+        <img class="input-password-img"
+          *ngIf="!isPasswordVisible"
+          (click)="handleIsPasswordVisible()"
+          src="../../../assets/hidden-password.svg"
+        />
+        <img class="input-password-img"
+          *ngIf="isPasswordVisible"
+          (click)="handleIsPasswordVisible()"
+          src="../../../assets/show-password.svg"
+        />
+      </div>
+
+      <div class="cadastro-input-container form-group">
+        <input
+          formControlName="password_confirm"
+          [ngClass]="{'is-invalid':f.password_confirm.errors && f.password_confirm.touched}"
+          placeholder="Confirmar Senha" [type]="isConfirmPasswordVisible ? 'text' : 'password'">
+          <div *ngIf="f.password_confirm.errors?.required" class="m-0 invalid-feedback">
+            Confirmar senha é obrigatório.
+          </div>
+          <div *ngIf="f.password_confirm.errors?.mustMatch" class="m-0 invalid-feedback">
+            As senhas não são iguais.
+          </div>
+        <img class="input-password-img"
+          *ngIf="!isConfirmPasswordVisible"
+          (click)="handleIsConfirmPasswordVisible()"
+          src="../../../assets/hidden-password.svg"
+        />
+        <img class="input-password-img"
+          *ngIf="isConfirmPasswordVisible"
+          (click)="handleIsConfirmPasswordVisible()"
+          src="../../../assets/show-password.svg"
+        />
+      </div>
+      <div class="cadastro-buttons d-flex justify-content-between" style="margin-top: 20px;">
+        <app-buttons class="d-flex" theme="white" value="Cancelar" (click)="toBack()">
+        </app-buttons>
+        <app-buttons class="d-flex" theme="blue" value="Cadastrar" type="submit">
+        </app-buttons>
+      </div>
+
+    </form>
+
+
+  </div>
+
+
+</div>

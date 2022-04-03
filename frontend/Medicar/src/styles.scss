@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --black:#444444;
+  --gray-light:#A8A8A8;
+  --blue:#49B4BB;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+h4{
+  font-size: 18px;
+  font-weight: 700;
+  color:var(--black)
+}
+
+input {
+  width: 100%;
+  padding:12px;
+  border: 1px solid var(--gray-light);
+  font-size: 13px;
+  line-height: 15px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  .invalid-feedback {
+    position: fixed;
+    height: 20px;
+    font-size: 12px;
+  }
+}
+
+input:focus{
+  outline: none !important;
+  border: 1px solid var(--blue) !important;
+  color:var(--black);
+}
+
+input::-webkit-input-placeholder {
+  letter-spacing: 0.32px;
+  color: var(--gray-light);
+}
+
+input.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-touched.ng-pristine {
+  border: 1px solid red;
+}
+
+
+
+html,
+body {
+  height: 100%;
+}
