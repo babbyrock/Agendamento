@@ -11,12 +11,32 @@
       </div>
 
     </div>
-    <div style="margin-top:35px;" class="d-flex justify-content-between align-items-center">
-      <h4 class="m-0">Nova Clínica</h4>
-      <app-buttons class="d-flex" theme="small-blue"  type="submit" imageValue="../../../assets/plus-icon.svg " value="Nova Consulta">
-      </app-buttons>
+    <div class="list-consult-card">
+      <div style="margin-top:35px;" class="d-flex justify-content-between align-items-center">
+        <h4 class="m-0">Consulta Clínica</h4>
+        <app-buttons class="d-flex" theme="small-blue"  type="submit" imageValue="../../../assets/plus-icon.svg " value="Nova Consulta">
+        </app-buttons>
+      </div>
+
+      <table class="table list-title-table table-borderless">
+        <thead>
+          <tr>
+            <th>Especialidade</th>
+            <th>Profissional</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tr *ngFor="let consulta of consultas; let i = index" [ngClass]="(i % 2 == 1) ? 'card-gray' :'list-value-table'">
+          <td>{{ consulta.medico.especialidade.nome }}</td>
+          <td>{{ consulta.medico.nome }}</td>
+          <td>{{ consulta.dia | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ consulta.horario }}</td>
+          <td></td>
+        </tr>
+      </table>
+
     </div>
-
-
   </div>
 </div>

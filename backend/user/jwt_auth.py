@@ -24,11 +24,9 @@ class JWTAuthentication(BaseAuthentication):
         try:
             payload=jwt.decode(token, settings.SECRET_KEY, algorithms='HS256')
             email=payload['email']
-            print(email)
 
             user=Usuario.objects.get(email=email)
 
-            print(Usuario.objects.all())
 
 
             return (user, token)

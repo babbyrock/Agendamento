@@ -14,9 +14,11 @@ class ConsultaViewSet(ModelViewSet):
     queryset = Consulta.objects.all()
     serializer_class = ConsultaSerializer
 
-    # def list(self,request):
-    #     # v =self.kwargs.get('horario', )
-    #     # query = request.GET.get('horario')
-    #     print(self)
-    #     return Response(self.serializer_class(self.queryset, many=True).data,
-    #                     status=status.HTTP_200_OK)
+    def get_queryset(self):
+        user = self.request.user
+        # print(Consulta.objects.all())
+        if user.is_anonymous:
+            return Consulta.objects.all()
+        return Consulta.objects.filter(user=user)
+
+    

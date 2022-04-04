@@ -1,3 +1,4 @@
+import { ConsultaService } from './services/Consultas/consulta.service';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +35,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule
   ],
   providers: [
+    ConsultaService,
     AccountService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],

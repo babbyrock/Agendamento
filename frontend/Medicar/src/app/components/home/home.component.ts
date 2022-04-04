@@ -1,6 +1,9 @@
+import { ConsultaService } from './../../services/Consultas/consulta.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/Account/account.service';
+import { Consulta } from 'src/app/models/Consulta';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +12,30 @@ import { AccountService } from 'src/app/services/Account/account.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public accountService: AccountService,
-              private router: Router) { }
+  consultas: Consulta[] = [];
 
-  ngOnInit(): void {
+  constructor(public accountService: AccountService,
+              private router: Router,
+              private consutaService: ConsultaService) { }
+
+  ngOnInit(): void {+
+    this.getConsultas();
+
+  }
+
+  getConsultas():void{
+    this.consutaService.getConsultas().subscribe({
+      next:(consultas: Consulta[]) => {
+        this.consultas = consultas;
+      },
+      error:(error: any) => console.log(error)
+    });
+
   }
 
 
   logout(): void {
     this.accountService.logout();
-    this.router.navigateByUrl('/login');
+    window.location.replace('/login');
   }
 }

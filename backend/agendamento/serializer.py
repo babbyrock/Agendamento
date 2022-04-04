@@ -9,6 +9,8 @@ class EspecialidadeSerializer(serializers.ModelSerializer):
         fields = ('id', 'nome')
 
 class MedicoSerializer(serializers.ModelSerializer):
+    especialidade = EspecialidadeSerializer(source="especialidade_id", read_only=True)
+    especialidade_id = serializers.PrimaryKeyRelatedField(queryset=Especialidade.objects.all(), write_only=True)
     class Meta:
         model = Medico
         fields = (
@@ -17,6 +19,7 @@ class MedicoSerializer(serializers.ModelSerializer):
             'crm',
             'email',
             'telefone',
+            'especialidade_id',
             'especialidade'
         )
     def __init__(self, *args, **kwargs):

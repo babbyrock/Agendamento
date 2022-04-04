@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 # from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from agendamento.views import AgendaViewSet, CreateAgendaViewSet, EspecialidadesViewSet, HorarioViewSet, MedicoViewSet
+from agendamento.views import AgendaViewSet, CreateAgendaViewSet, CreateEspecialidadesViewSet, CreateHorarioViewSet, CreateMedicoViewSet, EspecialidadesViewSet, HorarioViewSet, MedicoViewSet
 from rest_framework import routers, views
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt import views as jwt_views
@@ -12,10 +12,13 @@ from user.views import AuthUserAPIView, ListaUsuarios, LoginAPIView, UsuariosVie
 
 router = routers.DefaultRouter()
 router.register('especialidades', EspecialidadesViewSet, basename = 'Especialidades')
+router.register('criar-especialidades', CreateEspecialidadesViewSet, basename = 'Criar Especialidades')
 router.register('medicos', MedicoViewSet, basename = 'Medicos')
+router.register('criar-medicos', CreateMedicoViewSet, basename = 'Criar Medicos')
 router.register('horarios', HorarioViewSet, basename = 'Horários')
+router.register('criar-horarios', CreateHorarioViewSet, basename = 'Criar Horários')
 router.register('agendas', AgendaViewSet, basename = 'Agendas')
-router.register('criar_agendas', CreateAgendaViewSet, basename = 'Criar Agendas')
+router.register('criar-agendas', CreateAgendaViewSet, basename = 'Criar Agendas')
 router.register('cadastrar_usuario', UsuariosViewSet, basename='Cadastrar Usuário')
 router.register('consultas', ConsultaViewSet, basename = 'Consultas')
 

@@ -8,8 +8,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 
+class EspecialidadesViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    permission_classes = (IsAuthenticated, )
+    queryset = Especialidade.objects.all()  
+    serializer_class = EspecialidadeSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['nome']
 
-class EspecialidadesViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class CreateEspecialidadesViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     permission_classes = (
         EhSuperUser,
         permissions.DjangoModelPermissions,
@@ -19,7 +25,15 @@ class EspecialidadesViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, view
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['nome']
 
-class MedicoViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class MedicoViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    permission_classes = (IsAuthenticated, )
+    queryset = Medico.objects.all()
+    serializer_class = MedicoSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['nome']
+    filter_fields = ('especialidade_id',)
+
+class CreateMedicoViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     permission_classes = (
         EhSuperUser,
         permissions.DjangoModelPermissions,
@@ -27,10 +41,13 @@ class MedicoViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.Gen
     queryset = Medico.objects.all()
     serializer_class = MedicoSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    search_fields = ['nome']
-    filter_fields = ('especialidade',)
    
-class HorarioViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class HorarioViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    permission_classes = (IsAuthenticated, )
+    queryset = Horario.objects.all()
+    serializer_class = HorarioSerializer
+
+class CreateHorarioViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     permission_classes = (
         EhSuperUser,
         permissions.DjangoModelPermissions,
