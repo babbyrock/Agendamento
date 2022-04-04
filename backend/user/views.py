@@ -1,8 +1,8 @@
 from urllib import response
 from user.permissions import EhSuperUser
-from user.serializer import UsuarioSerializer
+from user.serializer import LoginSerializer, UsuarioSerializer
 from .models import Usuario
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, permissions
 from django.contrib.auth import authenticate
 from rest_framework import response, status
 
@@ -19,18 +19,28 @@ class ListaUsuarios(generics.ListAPIView):
         return queryset
     serializer_class = UsuarioSerializer
 
-# class LoginAPIView(generics.GenericAPIView):
-#     serializer_class = LoginSerializer
+class LoginAPIView(generics.GenericAPIView):
+    authentication_classes = []
+    serializer_class = LoginSerializer
     
-#     def post(self, request):
-#         email = request.data.get('email', None)
-#         password = request.data.get('password', None)
+    def post(self, request):
+        email = request.data.get('email', None)
+        password = request.data.get('password', None)
 
-#         user = authenticate(username=email, password=password)
+        user = authenticate(username=email, password=password)
 
-#         if user:
-#             serializer=self.serializer_class(user)
+        if user:
+            serializer=self.serializer_class(user)
             
-#             return response.Response(serializer.data, status=status.HTTP_200_OK)
-#         return response.Response({'message': "Credenciais inválidas, tente de novo"}, status=status.HTTP_400_BAD_REQUEST)
+            return response.Response(serializer.data, status=status.HTTP_200_OK)
+        return response.Response({'message': "Credenciais inválidas, tente de novo"}, status=status.HTTP_400_BAD_REQUEST)
+
+class AuthUserAPIView(generics.GenericAPIView):
+    permissions_classes = (permissions.IsAuthenticated,)
+    def get(self, request):
+        user = request.user
+
+        serializer = UsuarioSerializer(user)
+
+        return response.Response({'user':serializer.data})
 

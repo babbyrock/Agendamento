@@ -81,7 +81,8 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'user.jwt_auth.JWTAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         # 'rest_framework.authentication.TokenAuthentication',        
     ),
     'DEFAULT_PERMISSION_CLASSES': (

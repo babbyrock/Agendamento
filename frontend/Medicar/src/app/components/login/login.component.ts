@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private accountService: AccountService,
+  constructor(public accountService: AccountService,
               private router: Router,
               private toaster: ToastrService) { }
 
@@ -41,8 +41,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void{
+
     this.accountService.login(this.model).subscribe(
-      () => { console.log("logou");},
+      () => { this.router.navigate(['home']);},
       (error: any) => {
         if(error.status == 401)
           this.toaster.error('usuário ou senha inválidos');

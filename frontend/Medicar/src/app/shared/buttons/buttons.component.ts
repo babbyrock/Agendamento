@@ -12,7 +12,7 @@ export class ButtonsComponent implements OnInit {
   type: string = "";
 
   @Input()
-  theme: "blue"|"white"|"simple" = "white";
+  theme: "blue"|"white"|"small-blue"|"simple" = "white";
 
   @Input()
   value: string = "";
@@ -36,7 +36,11 @@ export class ButtonsComponent implements OnInit {
 
   checkButtonStyle(){
     switch(this.theme){
+      case "small-blue":
+        return "button-small-blue";
+        break;
       case "blue":
+
         return "button-blue";
         break;
       default:

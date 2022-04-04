@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from rest_framework.views import APIView
 import jwt
 from datetime import datetime, timedelta
 
@@ -17,7 +16,7 @@ class Usuario(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
 
-    # @property
-    # def token(self):
-    #     token=jwt.encode({'username':self.username, 'email':self.email, 'exp':datetime.utcnow() + timedelta(hours=2)}, settings.SECRET_KEY, algorithm='HS256')
-    #     return token
+    @property
+    def token(self):
+        token=jwt.encode({'username':self.username, 'email':self.email, 'exp':datetime.utcnow() + timedelta(hours=2)}, settings.SECRET_KEY, algorithm='HS256')
+        return token

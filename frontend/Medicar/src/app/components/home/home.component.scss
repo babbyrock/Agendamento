@@ -1,0 +1,39 @@
+.home-container {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+
+.home-content{
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  height: 100%;
+  width: 627px;
+  max-width: 90%;
+  img{
+    height: 25px;
+    width: 90px;
+  }
+}
+
+.header-content {
+  display: flex;
+  justify-content:space-between;
+}
+.username-title {
+  font-size: 13px;
+  color:var(--gray-light);
+  margin-right: 40px;
+  margin: 0 40px 0 0 !important;
+}
+
+.logout-title {
+  cursor:pointer;
+  font-size: 13px;
+  color:var(--blue);
+}

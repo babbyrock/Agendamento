@@ -13,9 +13,9 @@ class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consulta
         fields = ['id','dia', 'horario', 'data_agendamento', 'medico', 'agenda']
-        extra_kwargs = {
-            'validate_date': {'read_only': False},
-        }
+        # extra_kwargs = {
+        #     'validate_date': {'read_only': False},
+        # }
 
     def __init__(self, *args, **kwargs):
         super(ConsultaSerializer, self).__init__(*args, **kwargs)

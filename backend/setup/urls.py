@@ -7,7 +7,7 @@ from rest_framework import routers, views
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt import views as jwt_views
 from consulta.views import ConsultaViewSet
-from user.views import ListaUsuarios, UsuariosViewSet
+from user.views import AuthUserAPIView, ListaUsuarios, LoginAPIView, UsuariosViewSet
 
 
 router = routers.DefaultRouter()
@@ -23,7 +23,9 @@ router.register('consultas', ConsultaViewSet, basename = 'Consultas')
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('login/', TokenObtainPairView.as_view()),
+    # path('login/', TokenObtainPairView.as_view()),
+    path('login/', LoginAPIView.as_view()),
+    path('user/', AuthUserAPIView.as_view()),
     path('login/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     
 ]

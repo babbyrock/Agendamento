@@ -51,10 +51,10 @@ class UsuarioSerializer(serializers.ModelSerializer):
         return conta
 
 
-# class LoginSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Usuario
-#         fields = ('username','email', 'token')
-#         # extra_kwargs = {'password': {'write_only': True}}
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ('username','email', 'token')
+        # extra_kwargs = {'password': {'write_only': True}}
 
-#         read_only_fields = ['token']
+        read_only_fields = ['token']

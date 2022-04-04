@@ -21,7 +21,7 @@ export class CriarContaComponent implements OnInit {
 
   constructor(public fb: FormBuilder,
               private _location: Location,
-              private accountService: AccountService,
+              public accountService: AccountService,
               private router: Router,
               private toaster: ToastrService) { }
 
@@ -64,9 +64,7 @@ export class CriarContaComponent implements OnInit {
   }
 
   register():void {
-    console.log("entrou")
     this.user = { ...this.form.value};
-    console.log(this.user)
     this.accountService.register(this.user).subscribe(
       () => this.router.navigateByUrl('/login'),
       (error: any) => this.toaster.error(error.error)

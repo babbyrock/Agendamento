@@ -1,0 +1,22 @@
+<div class="home-container">
+  <div class="home-content">
+    <div class="d-flex justify-content-between mt-3 mb-3 align-items-center">
+      <img src="../../../assets/logo.png">
+      <div class="d-flex">
+        <p class="username-title" *ngIf="
+        (accountService.currentUser$| async) as user">
+        {{ user.username }}
+        </p>
+        <p (click)="logout()" class="logout-title m-0"> Desconectar </p>
+      </div>
+
+    </div>
+    <div style="margin-top:35px;" class="d-flex justify-content-between align-items-center">
+      <h4 class="m-0">Nova Clínica</h4>
+      <app-buttons class="d-flex" theme="small-blue"  type="submit" imageValue="../../../assets/plus-icon.svg " value="Nova Consulta">
+      </app-buttons>
+    </div>
+
+
+  </div>
+</div>

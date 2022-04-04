@@ -40,7 +40,7 @@ export class AccountService {
   }
 
 
-  loggout(): void {
+  logout(): void {
     localStorage.removeItem('user');
     this.currentUserSource.next(null as any);
     this.currentUserSource.complete();

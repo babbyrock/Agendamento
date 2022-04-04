@@ -50,6 +50,8 @@
       </div>
     </form>
 
-
+  <div *ngIf=" (accountService.currentUser$| async) as user">
+  {{ user.username }} oi
+  </div>
   </div>
 </div>
