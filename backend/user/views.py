@@ -9,11 +9,13 @@ from rest_framework import response, status
 
 
 class UsuariosViewSet(viewsets.ModelViewSet):
+    authentication_classes = []
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
     EhSuperUser
 
 class ListaUsuarios(generics.ListAPIView):
+    authentication_classes = []
     def get_queryset(self):
         queryset = Usuario.objects.all()
         return queryset

@@ -1,3 +1,4 @@
+import { MarcarConsultaComponent } from './components/marcar-consulta/marcar-consulta.component';
 import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +10,7 @@ const routes: Routes = [
   { path: "", redirectTo:"login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path:"criar-conta", component: CriarContaComponent,},
+  // { path:"marcar-consulta", component: MarcarConsultaComponent,},
 
   { path: '',
     runGuardsAndResolvers: 'always',

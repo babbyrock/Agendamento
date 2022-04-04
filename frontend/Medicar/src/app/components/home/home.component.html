@@ -14,7 +14,7 @@
     <div class="list-consult-card">
       <div style="margin-top:35px;" class="d-flex justify-content-between align-items-center">
         <h4 class="m-0">Consulta Clínica</h4>
-        <app-buttons class="d-flex" theme="small-blue"  type="submit" imageValue="../../../assets/plus-icon.svg " value="Nova Consulta">
+        <app-buttons class="d-flex" theme="small-blue"  type="submit" imageValue="../../../assets/plus-icon.svg " value="Nova Consulta" (click)="openModalMarcarConsulta()">
         </app-buttons>
       </div>
 
@@ -33,10 +33,24 @@
           <td>{{ consulta.medico.nome }}</td>
           <td>{{ consulta.dia | date: 'dd/MM/yyyy'}}</td>
           <td>{{ consulta.horario }}</td>
-          <td></td>
+          <td
+            style="display: flex; justify-content: flex-end;"><app-buttons theme="blue-background-none" value="Desmarcar" imageValue="../.././../assets/exclude-icon.svg"
+            (click)="openModal($event, template, consulta.id)"></app-buttons></td>
         </tr>
       </table>
 
     </div>
   </div>
 </div>
+
+
+<app-marcar-consulta *ngIf="showModal" (closeEvent)="closeModal()"></app-marcar-consulta>
+
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar a Consulta {{this.consultaId}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
+  </div>
+</ng-template>

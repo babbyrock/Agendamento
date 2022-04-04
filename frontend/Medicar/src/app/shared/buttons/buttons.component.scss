@@ -56,5 +56,15 @@ app-loader {
   height: 24px !important;
 }
 
+.button-blue-background-none{
+  background-color: transparent;
+  font-size: 13px;
+  width: auto;
+  height: auto !important;
+  color: var(--blue);
+  padding: auto;
+  font-weight: 700;
+}
+
 
 

@@ -1,4 +1,4 @@
-import { AccountService } from '../../services/Account/account.service';
+import { AccountService } from '../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';

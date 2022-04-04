@@ -69,3 +69,8 @@ class AgendaViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Agenda.objects.all()
     serializer_class = AgendaSerializer
 
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    
+    # search_fields = ['medico']
+    # filter_fields = ('especialidade',)
+

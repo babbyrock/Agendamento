@@ -1,5 +1,5 @@
 import { catchError, take } from 'rxjs/operators';
-import { AccountService } from 'src/app/services/Account/account.service';
+import { AccountService } from 'src/app/services/account.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,

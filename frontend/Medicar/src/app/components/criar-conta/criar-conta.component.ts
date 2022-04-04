@@ -1,11 +1,11 @@
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from 'src/app/helper/CustomValidator';
 import { User } from 'src/app/models/User';
-import { AccountService } from 'src/app/services/Account/account.service';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-criar-conta',
@@ -19,6 +19,9 @@ export class CriarContaComponent implements OnInit {
   user= {} as User;
   form!: FormGroup;
 
+  @Output()
+  closeEvent = new EventEmitter();
+
   constructor(public fb: FormBuilder,
               private _location: Location,
               public accountService: AccountService,
@@ -29,7 +32,6 @@ export class CriarContaComponent implements OnInit {
 
   ngOnInit(): void {
     this.validation();
-
   }
 
   private validation():void {
@@ -58,11 +60,6 @@ export class CriarContaComponent implements OnInit {
     this.isConfirmPasswordVisible = !this.isConfirmPasswordVisible;
   }
 
-
-  toBack() {
-    this._location.back();
-  }
-
   register():void {
     this.user = { ...this.form.value};
     this.accountService.register(this.user).subscribe(
@@ -70,4 +67,6 @@ export class CriarContaComponent implements OnInit {
       (error: any) => this.toaster.error(error.error)
     )
   }
+
+
 }

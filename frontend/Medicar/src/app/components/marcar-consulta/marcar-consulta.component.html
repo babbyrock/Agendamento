@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center align-items-center consulta-container">
+  <div class="card-modal">
+    <h3>Nova Consulta</h3>
+    <form [formGroup]="form" (ngSubmit)="register()" class="select-content">
+      <select class="options-active" id="especialidade-select" type="number" (ngModelChange)="onChangeMedicos()" formControlName="especialidade">
+        <option value="" disabled selected hidden>Especialidades</option>
+        <option *ngFor="let especialidade of especialidades"
+                  [ngValue]="especialidade.id">
+          {{ especialidade.nome }}
+        </option>
+      </select>
+
+      <select formControlName="medico" (ngModelChange)="onChangeData()" [ngClass]="onChangeMedicos() == true ? 'options-active':'options-disabled'">
+        <option value="" disabled selected hidden>Médico</option>
+        <option *ngFor="let medico of medicosNomes"
+                        [value]="medico">
+          {{ medico }}
+        </option>
+      </select>
+
+      <select formControlName="agenda" (ngModelChange)="onChangeHora()" [ngClass]="onChangeData() == true ? 'options-active':'options-disabled'">
+        <option value="" disabled selected hidden>Data</option>
+        <option *ngFor="let data of agendasData"
+                        [value]="data">
+          {{ data }}
+        </option>
+      </select>
+
+      <select formControlName="horario" [ngClass]="onChangeHora() == true ? 'options-active':'options-disabled'">
+        <option value="" hidden>Hora</option>
+        <option *ngFor="let hora of horario"
+                        [value]="hora">
+          {{ hora }}
+        </option>
+      </select>
+
+      <div class="cadastro-buttons d-flex justify-content-between" style="margin-top: 20px;">
+        <app-buttons class="d-flex" theme="white" value="Cancelar" (click)="hideModal(false)">
+        </app-buttons>
+        <app-buttons class="d-flex" theme="blue" value="Cadastrar" type="submit">
+        </app-buttons>
+      </div>
+
+    </form>
+  </div>
+</div>
